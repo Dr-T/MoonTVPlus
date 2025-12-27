@@ -28,6 +28,7 @@ import ScrollableRow from '@/components/ScrollableRow';
 import { useSite } from '@/components/SiteProvider';
 import VideoCard from '@/components/VideoCard';
 import HttpWarningDialog from '@/components/HttpWarningDialog';
+import BannerCarousel from '@/components/BannerCarousel';
 
 function HomeClient() {
   const [activeTab, setActiveTab] = useState<'home' | 'favorites'>('home');
@@ -222,8 +223,15 @@ function HomeClient() {
 
   return (
     <PageLayout>
+      {/* TMDB 热门轮播图 - 只在首页显示，且占满宽度 */}
+      {activeTab === 'home' && (
+        <div className='w-full mb-6 sm:mb-8'>
+          <BannerCarousel />
+        </div>
+      )}
+
       <div className='px-2 sm:px-10 py-4 sm:py-8 overflow-visible'>
-        {/* 顶部 Tab 切换 */}
+        {/* Tab 切换移到轮播图下方 */}
         <div className='mb-8 flex justify-center'>
           <CapsuleSwitch
             options={[
